@@ -47,7 +47,7 @@ const Pagnination = ({ storyIds }) => {
               <Link href={s.url || "#"}>
                 <h2 className="text-xl font-semibold">
                   {s.title}{" "}
-                  <span className="opacity-65">({new URL(s.url).host})</span>
+                  <span className="opacity-65">({new URL(s.url || "https://example.com").host})</span>
                 </h2>
               </Link>
               <p className="text-opacity-65 text-zinc-300">
