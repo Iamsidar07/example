@@ -47,7 +47,9 @@ const Pagnination = ({ storyIds }) => {
               <Link href={s.url || "#"}>
                 <h2 className="text-xl font-semibold">
                   {s.title}{" "}
-                  <span className="opacity-65">({new URL(s.url || "https://example.com").host})</span>
+                  <span className="opacity-65">
+                    ({new URL(s.url || "https://example.com").host})
+                  </span>
                 </h2>
               </Link>
               <p className="text-opacity-65 text-zinc-300">
@@ -64,9 +66,10 @@ const Pagnination = ({ storyIds }) => {
       <div className="flex items-center gap-2 flex-wrap mt-12">
         {new Array(numOfPage).fill(0).map((_, i) => (
           <button
+            disabled={isLoading}
             key={i}
             onClick={() => setCurrentPageNumber(i + 1)}
-            className={`border w-12 border-zinc-800 cursor-pointer ${
+            className={`border w-12 border-zinc-800 cursor-pointer disabled:opacity-65 ${
               currentPageNumber === i + 1 ? "bg-orange-500 text-white" : ""
             }`}
           >
