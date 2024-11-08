@@ -1,7 +1,7 @@
 "use client";
 import { useQueries } from "@tanstack/react-query";
 import Link from "next/link";
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 
 const NUM_OF_ITEMS_IN_ONE_PAGE = 10;
 
@@ -35,8 +35,18 @@ const Pagnination = ({ storyIds }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      {isLoading && "Loading"}
-      {isError && <p className="text-red-500">error</p>}
+      {isLoading &&
+        new Array(10).fill(0).map((_, i) => (
+          <div key={i}>
+            <div className="w-full h-8 bg-zinc-800 animate-pulse rounded" />
+            <div className="sm:w-1/3 h-6 bg-zinc-900 animate-pulse mt-1 rounded" />
+          </div>
+        ))}
+      {isError && (
+        <p className="text-red-500 text-center text-lg">
+          Something went wrong! 🌭
+        </p>
+      )}
       {queries &&
         !isLoading &&
         queries.map((result) => {
@@ -69,7 +79,7 @@ const Pagnination = ({ storyIds }) => {
             disabled={isLoading}
             key={i}
             onClick={() => setCurrentPageNumber(i + 1)}
-            className={`border w-12 border-zinc-800 cursor-pointer disabled:opacity-65 ${
+            className={`border w-12 border-zinc-800 cursor-pointer disabled:opacity-65 hover:bg-zinc-900 ${
               currentPageNumber === i + 1 ? "bg-orange-500 text-white" : ""
             }`}
           >
