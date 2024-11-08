@@ -58,17 +58,12 @@ const Pagnination = ({ storyIds }) => {
                 <h2 className="text-xl font-semibold">
                   {s.title}{" "}
                   <span className="opacity-65">
-                    ({new URL(s.url || "https://example.com").host})
+                    ({new URL(s.url || "https://example.com").hostname})
                   </span>
                 </h2>
               </Link>
               <p className="text-opacity-65 text-zinc-300">
-                {s.score} points by {s.by} on{" "}
-                {new Date(s.time).toLocaleString("en-US", {
-                  day: "2-digit",
-                  year: "numeric",
-                  month: "long",
-                })}
+                {s.score} points by {s.by}
               </p>
             </div>
           );
